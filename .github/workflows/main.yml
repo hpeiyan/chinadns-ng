@@ -1,9 +1,12 @@
 name: Run Bash Script Daily
 
 on:
+  push:
+    branches:
+      - master
   schedule:
-    # 设置每天的 UTC 时间执行任务
-    - cron: '10 0 * * *'  # 这是每天 10 点 (UTC 时间)
+    - cron: '0 0 * * *'
+
 
 jobs:
   run-script:
