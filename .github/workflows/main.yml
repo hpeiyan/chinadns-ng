@@ -1,0 +1,17 @@
+name: Run Bash Script Daily
+
+on:
+  schedule:
+    # 设置每天的 UTC 时间执行任务
+    - cron: '10 0 * * *'  # 这是每天 10 点 (UTC 时间)
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Run bash script
+      run: bash res/update-chnlist.sh
