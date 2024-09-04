@@ -1,7 +1,6 @@
 name: Run Bash Script Manually
 
 on:
-  # 暂时移除定时任务，改为手动触发和 push 触发
   push:
     branches:
       - master  # 当代码提交到 master 分支时触发
@@ -13,7 +12,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3  # 拉取仓库
+
+    - name: Give execute permission to script
+      run: chmod +x res/update-chnlist.sh  # 给脚本执行权限
 
     - name: Run bash script
-      run: bash res/update-chnlist.sh
+      run: bash res/update-chnlist.sh  # 运行脚本
