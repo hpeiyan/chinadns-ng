@@ -3,8 +3,8 @@ name: Run Bash Script Manually
 on:
   push:
     branches:
-      - master  # 当代码提交到 master 分支时触发
-  workflow_dispatch:  # 手动触发工作流
+      - master
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -12,10 +12,13 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # 拉取仓库
+      uses: actions/checkout@v3
 
     - name: Give execute permission to script
-      run: chmod +x res/update-chnlist.sh  # 给脚本执行权限
+      run: chmod +x res/update-chnlist.sh
 
     - name: Run bash script
-      run: bash res/update-chnlist.sh  # 运行脚本
+      run: bash res/update-chnlist.sh
+
+    - name: Check output file
+      run: cat chnlist.txt
