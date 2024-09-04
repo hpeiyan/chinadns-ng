@@ -20,31 +20,10 @@ jobs:
     - name: Run bash script
       run: bash res/update-chnlist.sh
 
-    - name: Compare and update chnlist.txt
+    - name: Commit and push changes
       run: |
-        # 如果仓库中已经有历史版本的 chnlist_previous.txt，就与之比较
-        if [ -f chnlist_previous.txt ]; then
-          if cmp -s chnlist.txt chnlist_previous.txt; then
-            echo "No changes in chnlist.txt, skipping commit."
-          else
-            echo "File has changed, committing the updated chnlist.txt..."
-            git config --global user.name 'github-actions[bot]'
-            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-            git add chnlist.txt chnlist_previous.txt
-            git commit -m "Update chnlist.txt"
-            git push
-          fi
-        else
-          # 如果没有历史版本，直接保存并提交
-          echo "No previous file, committing the new chnlist.txt..."
-          cp chnlist.txt chnlist_previous.txt
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add chnlist.txt chnlist_previous.txt
-          git commit -m "Add initial chnlist.txt"
-          git push
-
-    - name: Save the new version for next run
-      run: |
-        # 将当前生成的 chnlist.txt 复制为 chnlist_previous.txt，以便下次运行时比较
-        cp chnlist.txt chnlist_previous.txt
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add chnlist.txt
+        git commit -m "Update chnlist.txt"
+        git push
