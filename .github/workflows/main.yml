@@ -20,10 +20,15 @@ jobs:
     - name: Run bash script
       run: bash res/update-chnlist.sh
 
-    - name: Commit and push changes
+    - name: Compare and update chnlist.txt
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add chnlist.txt
-        git commit -m "Update chnlist.txt"
-        git push
+        if ! cmp -s chnlist.txt chnlist_previous.txt; then
+          echo "File has changed, updating..."
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add chnlist.txt
+          git commit -m "Update chnlist.txt"
+          git push
+        else
+          echo "No changes in chnlist.txt"
+        fi
