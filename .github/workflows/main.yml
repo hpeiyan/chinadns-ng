@@ -17,16 +17,15 @@ jobs:
     - name: Give execute permission to script
       run: chmod +x res/update-chnlist.sh
 
-    - name: Run bash script
-      run: bash res/update-chnlist.sh
-
     - name: Compare and update chnlist.txt
       run: |
         # 如果没有 chnlist.txt 文件的历史版本，复制一个新版本
         if [ ! -f chnlist_previous.txt ]; then
           cp chnlist.txt chnlist_previous.txt
         fi
-
+        
+        bash res/update-chnlist.sh
+        
         # 比较新旧文件，只有文件内容有变化才提交
         if ! cmp -s chnlist.txt chnlist_previous.txt; then
           echo "File has changed, committing the updated chnlist.txt..."
