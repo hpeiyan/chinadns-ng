@@ -22,10 +22,19 @@ jobs:
     - name: Run bash script
       run: bash res/update-chnlist.sh
 
+    - name: Install sing-box
+      run: bash <(curl -fsSL https://sing-box.app/deb-install.sh)
+
+    - name: Compile chnlist.json to SRS format
+      run: sing-box rule-set compile chnlist.json -o chnlist.srs
+
+    - name: Compile adblock.json to SRS format
+      run: sing-box rule-set compile adblock.json -o adblock.srs
+
     - name: Commit and push changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add chnlist.json adblock.json
-        git commit -m "Update chnlist.json and adblock.json"
+        git add chnlist.json adblock.json chnlist.srs adblock.srs
+        git commit -m "Update chnlist.json and adblock.json, chnlist.srs and adblock.srs"
         git push
