@@ -3,6 +3,10 @@
     "rules": [
         {
             "domain_suffix": [
+                "qq.com",
+                "qlogo.cn",
+                "qpic.cn",
+                "weixinbridge.com",
                 "taobao.com",
                 "alipay.com",
                 "mmstat.com",
