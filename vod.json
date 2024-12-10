@@ -3,6 +3,7 @@
     "rules": [
         {
             "domain_suffix": [
+                "vk.com",
                 "qq.com",
                 "qlogo.cn",
                 "qpic.cn",
