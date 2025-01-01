@@ -3,6 +3,9 @@
     "rules": [
         {
             "domain_suffix": [
+                ".cn",
+                "myhithink.com",
+                "hxkba.com",
                 "vk.com",
                 "qq.com",
                 "qlogo.cn",
